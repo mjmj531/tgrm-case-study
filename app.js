@@ -467,6 +467,11 @@ function updateDemoStats(data) {
 function setData(data, assetBase = "") {
   state.data = data;
   state.assetBase = assetBase;
+  // The exported JSON's `domain` field is hard-coded for all datasets —
+  // override it with the label of the currently selected tab so each
+  // dataset shows its own name in the meta line and stats box.
+  const dataset = DATASETS.find((d) => d.key === state.datasetKey);
+  if (dataset && state.data) state.data.domain = dataset.label;
   state.selectedIndex = 0;
   state.filter = "all";
   render();

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TGRM: Token-Granular Routing for Multimodal Recommendation</title>
+    <meta
+      name="description"
+      content="Project page and interactive case study for TGRM: Token-Granular Routing via Interleaved Pre-training for Multimodal Cross-Domain Sequential Recommendation."
+    />
+    <link rel="stylesheet" href="./assets/vendor/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="./assets/vendor/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="./assets/vendor/fontawesome/css/brands.min.css" />
+    <link rel="stylesheet" href="./assets/vendor/academicons/css/academicons.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <nav class="page-nav" id="pageNav" aria-label="Section navigation">
+      <span class="page-nav-title">On this page</span>
+      <ul>
+        <li><a href="#top" data-target="top">Overview</a></li>
+        <li><a href="#abstract" data-target="abstract">Abstract</a></li>
+        <li><a href="#method" data-target="method">Method</a></li>
+        <li><a href="#results" data-target="results">Results</a></li>
+        <li><a href="#case-study" data-target="case-study">Case Study</a></li>
+      </ul>
+    </nav>
+    <main id="top">
+      <section class="hero publication-header">
+        <div class="container is-max-desktop has-text-centered">
+          <h1 class="publication-title">
+            <strong class="publication-title-brand">TGRM</strong>: Token-Granular Routing via Interleaved Pre-training for
+            Multimodal Cross-Domain Sequential Recommendation
+          </h1>
+
+          <div class="publication-authors">
+            <span class="author-block">Jing Ma</span>
+            <span class="author-block">Tianlu Zhang</span>
+            <span class="author-block">Yanlong Zang</span>
+            <span class="author-block">Shijie Yang</span>
+            <span class="author-block">Weijie Ding</span>
+            <span class="author-block">Pinghua Gong</span>
+            <span class="author-block">Jungong Han</span>
+          </div>
+
+          <div class="publication-venue">
+            <!-- Tsinghua University · JD.COM · Multimodal Sequential Recommendation -->
+            Tsinghua University · JD.COM
+          </div>
+
+          <div class="publication-links">
+            <div class="publication-links-row">
+              <a class="button is-dark" href="./assets/TGRM_TMM_tmp.pdf" target="_blank" rel="noopener">
+                <span class="button-icon" aria-hidden="true">
+                  <svg class="icon-pdf" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#ffffff" d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                    <path fill="#cbd5e1" d="M14 2v6h6z" />
+                    <rect x="4" y="13" width="13" height="6" rx="1.2" fill="#dc2626" />
+                    <text x="10.5" y="17.6" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="3.6" font-weight="900" fill="#ffffff" letter-spacing="0.2">PDF</text>
+                  </svg>
+                </span>
+                <span>Paper</span>
+              </a>
+              <span class="button is-dark is-disabled" aria-disabled="true" title="Coming soon">
+                <span class="button-icon" aria-hidden="true">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                <span class="button-tag">Coming soon</span>
+              </span>
+              <span class="button is-dark is-disabled" aria-disabled="true" title="Coming soon">
+                <span class="button-icon" aria-hidden="true">
+                  <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+                <span class="button-tag">Coming soon</span>
+              </span>
+            </div>
+            <div class="publication-links-row publication-links-row--secondary">
+              <a class="button is-dark" href="#abstract">Abstract</a>
+              <a class="button is-dark" href="#method">Method</a>
+              <a class="button is-dark" href="#results">Results</a>
+              <a class="button is-primary" href="#case-study">Interactive Demo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero teaser">
+        <div class="container is-max-desktop">
+          <figure class="publication-banner" style="width: 80%; margin: 0 auto 1.4rem;">
+            <img
+              src="./assets/intro_comparison.png"
+              alt="Comparison between existing methods and TGRM"
+            />
+          </figure>
+          <h2 class="subtitle has-text-centered">
+            TGRM addresses two core conflicts in multimodal cross-domain
+            sequential recommendation: intra-item modality imbalance and
+            inter-item domain knowledge entanglement.
+          </h2>
+        </div>
+      </section>
+
+      <section id="abstract" class="section hero is-light">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified">
+                <p>
+                  Recent multimodal sequential recommendation methods increasingly
+                  leverage pre-trained language models to improve cross-domain
+                  generalization. However, their potential is heavily constrained by
+                  dual representation conflicts: the <em>intra-item conflict</em>
+                  caused by token-level modality imbalance that statistically
+                  marginalizes visual signals, and the <em>inter-item conflict</em>
+                  stemming from the entanglement of domain-invariant and
+                  domain-specific knowledge during isolated pre-training. To tackle
+                  these issues, we present TGRM, a
+                  <strong>T</strong>oken-<strong>G</strong>ranular
+                  <strong>R</strong>outing framework for
+                  <strong>M</strong>ultimodal cross-domain sequential recommendation.
+                  TGRM synergizes <em>modality-aware representation learning</em> to
+                  establish independent modality-specific spaces and alleviate textual
+                  dominance, with <em>domain-aware sequential modeling</em> to
+                  explicitly disentangle transferable behavioral invariants from
+                  domain-dependent patterns. Furthermore, an
+                  <em>interleaved-domain pre-training</em> strategy coupled with
+                  <em>semantic-ID joint fine-tuning</em> breaks the constraints of
+                  domain isolation, enabling the effective capture of holistic
+                  cross-domain user trajectories.
+                </p>
+                <p>
+                  Extensive experiments on Amazon Review benchmarks and a large-scale
+                  industrial e-commerce dataset from JD.com show that TGRM consistently
+                  outperforms state-of-the-art methods, yielding relative improvements
+                  of 3%&ndash;13% across Recall, NDCG, and MRR and
+                  validating its effectiveness and practical applicability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="section">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Method</h2>
+          <div class="columns is-centered method-grid">
+            <div class="column">
+              <figure class="publication-figure">
+                <img src="./assets/tgrm_framework.png" alt="TGRM framework overview" />
+                <figcaption>
+                  Overview of the TGRM framework.
+                  TGRM adopts a unified PLM backbone with token-granular MoAs. Bottom layers employ MA-MoA to disentangle textual and visual representations, while top layers use DA-MoA to balance domain-invariant logic and domain-specific behaviors.
+                </figcaption>
+              </figure>
+            </div>
+            <div class="column">
+              <figure class="publication-figure">
+                <img
+                  src="./assets/two_stage_finetune.png"
+                  alt="TGRM two-stage fine-tuning"
+                />
+                <figcaption>
+                  Illustration of the two-stage fine-tuning method. Stage I
+                  transfers source-domain multimodal knowledge to the target
+                  domain. Stage II freezes item
+                  representations and optionally
+                  injects trainable item ID embeddings to sharpen single-domain
+                  user-item discrimination.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <article>
+              <span>01</span>
+              <h3>Modality-Aware Routing</h3>
+              <p>
+                Separates textual, visual, and multimodal token spaces to reduce
+                textual dominance and preserve visual signals.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Domain-Aware Routing</h3>
+              <p>
+                Disentangles transferable behavioral invariants from
+                domain-specific preference patterns.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Interleaved Pre-training</h3>
+              <p>
+                Models chronological cross-domain trajectories instead of only
+                relying on isolated single-domain sequences.
+              </p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Semantic-ID Fine-tuning</h3>
+              <p>
+                Integrates semantic item representations with item IDs for
+                target-domain adaptation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section hero is-light">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Results and Analysis</h2>
+          <article class="result-card result-card--full">
+            <h3>Public Amazon Benchmarks</h3>
+            <p>
+              TGRM achieves consistent gains over ID-based, text-enhanced,
+              and multimodal baselines across six target domains.
+            </p>
+            <figure class="result-figure">
+              <img
+                src="./assets/overall_performance.png"
+                alt="Overall performance comparison on public Amazon benchmarks"
+              />
+            </figure>
+          </article>
+
+          <article class="result-card result-card--full">
+            <h3>Industrial Evaluation</h3>
+            <p>
+              To evaluate practical scalability, we construct a large-scale
+              industrial benchmark from JD.com. User <strong>view</strong>,
+              <strong>cart</strong>, and <strong>order</strong> logs from the
+              past six months are treated as three heterogeneous behavior
+              domains, each containing approximately
+              <strong>20M interaction sequences</strong> after preprocessing.
+            </p>
+            <p>
+              TGRM is jointly pre-trained on these three domains using BGE-M3
+              as the backbone to support Chinese e-commerce content and
+              long-token encoding. The inferred multimodal user/item
+              representations are compressed into
+              <strong>256-dimensional embeddings</strong> and injected into an
+              existing industrial <strong>multi-scenario multi-task ranking
+              model</strong> for offline evaluation with
+              <strong>CTCVR GAUC</strong>.
+            </p>
+            <div class="industrial-flow">
+              <span>View / Cart / Order Logs</span>
+              <span>Multimodal Sequential Model Pre-training</span>
+              <span>Inference 256-D User & Item Embeddings</span>
+              <span>Multi-Scenario Multi-Task Ranking</span>
+              <span>CTCVR GAUC Evaluation</span>
+            </div>
+            <div class="industrial-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>Production Baseline GAUC</th>
+                    <th>TGRM ΔGAUC</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Scenario A</td>
+                    <td>0.642850</td>
+                    <td>+1.1095 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Scenario B</td>
+                    <td>0.662526</td>
+                    <td>+1.2606 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Scenario C</td>
+                    <td>0.659078</td>
+                    <td>+1.5374 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Scenario D</td>
+                    <td>0.721838</td>
+                    <td>+0.7542 pp</td>
+                  </tr>
+                  <tr class="average-row">
+                    <td>Average</td>
+                    <td>0.671573</td>
+                    <td>+1.1654 pp</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="case-study" class="section">
+        <div class="container case-container">
+          <h2 class="title is-3 has-text-centered">Interactive Case Study</h2>
+          <p class="subtitle has-text-centered case-subtitle">
+            Sampled cases from the target domains of the Amazon Review
+            dataset are visualized below, including local product images,
+            item metadata, timestamps, ground-truth ranks, and top-k model
+            predictions.
+          </p>
+
+          <div class="dataset-tabs-wrap">
+            <div class="dataset-tabs" id="datasetTabs" role="tablist" aria-label="Dataset switch"></div>
+          </div>
+
+          <div class="demo-stats" id="caseStats" aria-label="Loaded case statistics">
+            <div><span>Cases</span><strong id="statCases">--</strong></div>
+            <div><span>Domain</span><strong id="statDomain">--</strong></div>
+            <div><span>Top-K</span><strong id="statTopK">--</strong></div>
+          </div>
+
+          <div class="case-app">
+            <aside class="case-sidebar">
+              <div class="sidebar-header">
+                <div>
+                  <h3>Recommendation Cases</h3>
+                  <p id="datasetMeta">Loading case study export...</p>
+                </div>
+              </div>
+
+              <div class="toolbar">
+                <select id="caseFilter" aria-label="Case filter">
+                  <option value="all">All Cases</option>
+                </select>
+              </div>
+
+              <div id="rankDistribution" class="rank-distribution"></div>
+              <div id="caseList" class="case-list"></div>
+            </aside>
+
+            <section class="case-detail">
+              <header class="detail-header">
+                <div>
+                  <p class="eyebrow">Target Domain User Sequence</p>
+                  <h2 id="caseTitle">Select a case</h2>
+                </div>
+                <div id="metricPills" class="metric-pills"></div>
+              </header>
+
+              <div id="emptyState" class="empty-state">
+                <h3>No case loaded</h3>
+                <p>
+                  Place <code>case_study_export_wtime_v1e3_cover5.json</code>
+                  and <code>images/</code> under
+                  <code>case_study/Scientific/</code>.
+                </p>
+              </div>
+
+              <div id="caseContent" class="case-content hidden">
+                <section class="panel">
+                  <div class="section-heading">
+                    <h3>Historical Sequence</h3>
+                    <span id="historyCount"></span>
+                  </div>
+                  <div id="historyTrack" class="history-track"></div>
+                </section>
+
+                <section class="comparison-grid">
+                  <article class="panel ground-truth-panel">
+                    <div class="section-heading">
+                      <h3>Ground Truth</h3>
+                      <span id="groundTruthRank"></span>
+                    </div>
+                    <div id="groundTruthCard"></div>
+                  </article>
+
+                  <article class="panel">
+                    <div class="section-heading">
+                      <h3>Model Predictions</h3>
+                      <span id="predictionSummary"></span>
+                    </div>
+                    <div id="predictionList" class="prediction-list"></div>
+                  </article>
+                </section>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- TODO: 上 arXiv 后取消注释并填入 arXiv ID -->
+      <!--
+      <section class="section hero is-light" id="bibtex">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">BibTeX</h2>
+          <pre><code>@article{ma2026tgrm,
+  title={TGRM: Token-Granular Routing via Interleaved Pre-training for Multimodal Cross-Domain Sequential Recommendation},
+  author={Ma, Jing and Zhang, Tianlu and Zang, Yanlong and Yang, Shijie and Ding, Weijie and Gong, Pinghua and Han, Jungong},
+  year={2026}
+}</code></pre>
+        </div>
+      </section>
+      -->
+    </main>
+
+    <footer class="footer">
+      <div class="container is-max-desktop has-text-centered">
+        <p>
+          This project page follows the structure of the Academic Project Page
+          Template and embeds a TGRM recommendation case-study demo.
+        </p>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+    <script>
+      (function () {
+        const navLinks = document.querySelectorAll(".page-nav a[data-target]");
+        if (!navLinks.length) return;
+        const sections = Array.from(navLinks)
+          .map((a) => document.getElementById(a.dataset.target))
+          .filter(Boolean);
+
+        const setActive = (id) => {
+          navLinks.forEach((a) => a.classList.toggle("active", a.dataset.target === id));
+        };
+
+        const onScroll = () => {
+          const probe = window.scrollY + window.innerHeight * 0.35;
+          let current = sections[0]?.id;
+          for (const sec of sections) {
+            if (sec.offsetTop <= probe) current = sec.id;
+          }
+          if (current) setActive(current);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>
